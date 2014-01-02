@@ -56,7 +56,7 @@ instance Show NimberException where
 instance Exception NimberException
 
 -- |The type of finite nimbers.
-newtype Nimber = Nimber {fromNimber :: Integer} deriving (Eq, Ord)
+newtype Nimber = Nimber Integer deriving (Eq, Ord)
 
 nimSize :: Nimber -> Int
 nimSize (Nimber a) = bit (intLog2 (integerLog2 a))
@@ -162,3 +162,7 @@ instance Floating Nimber where
   asinh = throw (Innimerable "asinh")
   atanh = throw (Innimerable "atanh")
   acosh = throw (Innimerable "acosh")
+
+-- |Convert a 'Nimber' to the corresponding natural number.
+fromNimber :: Nimber -> Integer
+fromNimber (Nimber a) = a
